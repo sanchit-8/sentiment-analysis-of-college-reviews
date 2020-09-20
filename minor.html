@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="minor.js" defer></script>
+<script src="graph.js" ></script>
+<script>
+function myFunction() {
+
+alert(document.getElementById("sel").value);
+
+    if (document.getElementById("sel").value == 'other') 
+    {
+        document.getElementById("tet").disabled = false;
+        alert("shwrtj");
+    }      
+
+    else 
+    {
+        document.getElementById("tet").disabled = true;
+  alert("SDfg");
+    }
+
+
+}
+</script>
+<script type="text/javascript">
+
+
+
+
+</script>
+
+
+
+</head>
+<body>
+  <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+<form >
+  <select name="cars" class="dropbtn" id="sel" onchange="myFunction()">
+    <option value="" id="toset"></option>
+    
+    <option value="other" id="oth" >Other</option>
+
+
+  </select>
+<input type="text" id="tet" disabled> 
+  <br><br>
+  <input type="submit"  >
+</form>
+
+<div>
+  <template id="single-post">
+      <li class="post-item">
+        <h2></h2>
+        <p></p>
+        <button>DELETE</button>
+      </li>
+    </template>
+  </div>
+  
+<!-- script for canvas  -->
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<!-- script for column graph  -->
+<script>
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+  animationEnabled: true,
+  theme: "light2", // "light1", "light2", "dark1", "dark2"
+  title:{
+    text: "Top Oil Reserves"
+  },
+  axisY: {
+    title: "Reserves(MMbbl)"
+  },
+  data: [{        
+    type: "column",  
+    showInLegend: true, 
+    legendMarkerColor: "grey",
+    legendText: "MMbbl = one million barrels",
+    dataPoints: [      
+      { y: 300878, label: "Venezuela" },
+      { y: 266455,  label: "Saudi" },
+      { y: 169709,  label: "Canada" },
+      { y: 158400,  label: "Iran" },
+      { y: 142503,  label: "Iraq" },
+      { y: 101500, label: "Kuwait" },
+      { y: 97800,  label: "UAE" },
+      { y: 80000,  label: "Russia" }
+    ]
+  }]
+});
+chart.render();
+
+
+var val="dsgdgsg";
+var cnt=26;
+var chart = new CanvasJS.Chart("chartContainer2", {
+  exportEnabled: true,
+  animationEnabled: true,
+  title:{
+    text: "State Operating Funds"
+  },
+  legend:{
+    cursor: "pointer",
+    itemclick: explodePie2
+  },
+  data: [{
+    type: "pie",
+    showInLegend: true,
+    toolTipContent: "{name}: <strong>{y}%</strong>",
+    indexLabel: "{name} - {y}%",
+    dataPoints: [
+      { y: cnt, name: "School Aid", exploded: true },
+      { y: 20, name: "Medical Aid" },
+      { y: 5, name: "Debt/Capital" },
+      { y: 3, name: "Elected Officials" },
+      { y: 7, name: "University" },
+      { y: 17, name: "Executive" },
+      { y: 22, name: val}
+    ]
+  }]
+});
+chart.render();
+//console.log(document.getElementById("ask").text);
+}
+
+function explodePie2 (e) {
+  if(typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
+    e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
+  } else {
+    e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
+  }
+  e.chart.render();
+
+}
+
+
+
+</script>
+<p>
+  <p>
+  </p>
+
+  <div id="chartContainer2" style="height: 300px; width: 100%;"></div>
+
+<h1>asvsdfv</h1>
+<div id="res">
+  <p id="name">
+  </p>
+</div>
+
+
+
+<p hidden id="ask">
+</p>
+
+
+
+
+</body>
+
+
+
+
+</html>
+
+

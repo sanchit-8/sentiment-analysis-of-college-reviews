@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script>
+function myFunction() {
+
+//alert(document.getElementById("sel").value);
+
+    if (document.getElementById("sel").value == 'Other') 
+    {
+        document.getElementById("tet").style.visibility = "visible";
+        //alert("shwrtj");
+    }      
+    else 
+    {
+        document.getElementById("tet").style.visibility = "hidden";
+  //alert("SDfg");
+    }
+}
+</script>
+<script>
+
+function func2() {
+	//alert("Bdfbs");
+	var nam=document.getElementById("sel").value;
+	//alert(nam);
+	if(nam=='Other'){
+		var colg=document.getElementById("tet").value;
+		var url="http://127.0.0.1:5000/add_college/"+colg;
+		axios.get(url)
+		  .then((response) => {
+		    //console.log(response.data);
+		    arr=response.data;
+
+		    console.log(arr);
+		  });
+	}
+	else{
+
+		var url="http://127.0.0.1:5000/get_info/"+nam;
+		axios.get(url)
+		  .then((response) => {
+		    //console.log(response.data);
+		    arr=response.data;
+		    console.log(arr.career[0].Infrastructure.avg_score);
+		    p=arr.career[0].Placements.avg_score;
+		    s=arr.career[0].Social.avg_score;
+		    f=arr.career[0].faculty.avg_score;
+		    i=arr.career[0].Infrastructure.avg_score;
+		    c=arr.career[0].combined.avg_score;
+		    bar_chart(p,s,f,i,c);
+		    //console.log(arr);
+		  });
+	}
+
+
+}
+
+
+
+</script>
+
+	
+
+
+
+</head>
+<body onload="func()">
+
+<!--The SELECT element.-->
+<form>
+    <select id="sel" onchange="myFunction()">
+        <option value="">-- Select --</option>
+        <!-- <option value="other" id="oth" >Other</option> -->
+    </select>
+
+    <input type="text" id="tet" style="visibility: hidden;"> 
+  	<br><br>
+  	<input type="button" onclick="func2()" value="Submit">
+
+</form>
+
+<script type="text/javascript">
+
+	function func()
+	{
+		
+		const options = {
+  				headers:{'Access-Control-Allow-Origin': '*',
+  						  'Access-Control-Allow-Methods':'GET',
+  						  'Access-Control-Allow-Headers': 'Content-Type , Autharization'
+  						}
+		};
+		var arr,a=0;
+		arr2= new Array();
+		var ele = document.getElementById('sel');
+		axios.get('http://127.0.0.1:5000/get_all_colleges')
+		  .then((response) => {
+		    //console.log(response.data);
+		    arr=response.data;
+
+		    for (i in arr)
+			{	
+				ele.innerHTML = ele.innerHTML +
+                '<option value="' + arr[i] + '">' + arr[i] + '</option>';
+			}
+			  ele.innerHTML = ele.innerHTML + '<option value="Other" id="sel" >Other</option>';
+		  });
+	}	
+</script>
+<script type="text/javascript">
+anychart.onDocumentReady(function () {
+
+  // create data
+  var data = [
+    ["Winter", 20000, 40000, 20000],
+    ["Spring", 20000, 40000, 40000],
+    ["Summer", 40000, 30000, 30000],
+    ["Autumn", 20000, 20000, 40000]
+  ];
+
+  // create a chart
+  var chart = anychart.bar();
+
+  // set data
+  chart.data(data);
+
+  // enable the percent stacking mode
+  chart.yScale().stackMode("percent");
+
+  // configure tooltips
+  chart.tooltip().format("{%yPercentOfCategory}{decimalsCount:2}%");
+
+  // configure labels on the y-axis
+  chart.yAxis().labels().format("{%value}%");
+
+  // set the chart title
+  chart.title("Percent Stacked Bar Chart");
+
+  // set the container id
+  chart.container("container");
+
+  // initiate drawing the chart
+  chart.draw();
+});
+</script>
+
+
+
+<div id="container" style="width: 100%; height: 100%"></div>
+    <script>
+    function bar_chart(p,s,f,i,c){
+      anychart.onDocumentReady(function() {
+ 
+        // set the data
+        var data = {
+            header: ["Parameter", "Avg Score"],
+            rows: [
+              ["Placements", p],
+              ["Social", s],
+              ["Faculty", f],
+              ["Infrasturcture", i],
+              ["Combined", c],
+              
+        ]};
+ 
+        // create the chart
+        var chart = anychart.column();
+ 		
+        // add the data
+        chart.data(data);
+ 
+        // set the chart title
+        chart.title("avg rating on various factors");
+ 
+        // draw
+        chart.container("container");
+        chart.draw();
+      });
+  }
+    </script>
+
+
+</body>
+</html>
+
+

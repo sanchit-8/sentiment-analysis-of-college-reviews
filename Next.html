@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <title>CS Tooltip 24</title>
+  <link href="https://playground.anychart.com/86WkXwoS/iframe" rel="canonical">
+  <meta content="Bar Chart,Bar Graph,Column Chart,Tooltip,Vertical Chart" name="keywords">
+  <meta content="AnyChart - JavaScript Charts designed to be embedded and integrated" name="description">
+  <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-base.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+  <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-exports.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+  <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-ui.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+  <link href="https://cdn.anychart.com/releases/8.7.0/css/anychart-ui.min.css?hcode=a0c21fc77e1449cc86299c5faa067dc4" rel="stylesheet" type="text/css">
+  
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="https://cdn.anychart.com/releases/8.0.0/js/anychart-base.min.js"></script>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<style type="text/css">
+.container {
+    padding: 60px 50px;
+    position: relative;
+  }
+  .center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+  #rcorners3 {
+  border-radius: 40px;
+  background-position: left top;
+  background-repeat: repeat;
+  
+  
+}
+.cont{
+	padding-right: 50px;
+	padding-left: 50px;
+}
+.navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    #cont
+    {
+    	padding-left: 100px; padding-right: 100px;
+    	padding-top: 50px;
+    }
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      /*background-color: #555;
+      color: white;*/
+      background-color: #0cbaba;
+	background-image: linear-gradient(315deg, #0cbaba 0%, #380036 74%);
+    color: #fff;
+
+      padding: 0px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+    .bg1{
+    	background-color: #dce7f3;
+    }
+    .bg2{
+    	background-color: #dce7f3;
+    	/*visibility: hidden;*/
+    }
+    
+    .sel{
+    	color: black;
+    }
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.chart{
+	width: 100%; height: 100%;
+	background-color: #ffffff;
+
+}
+.anychart-credits-text{
+	visibility: hidden;
+	color: white;
+
+}
+.anychart-credits-logo{
+	visibility: hidden;
+	color: white;
+
+}
+  </style>
+ <style>
+  html, body, #container {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.anychart-tooltip {
+  background-color: white;
+  border-color: #455a64;
+  border-style: solid;
+  border-width: 3px;
+  color: #455a64;
+}
+
+
+.div.div.div.svg.g.g.g.path{
+	fill: black;
+	border-width: 10px; 
+}
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  /*margin: 4px 2px;*/
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+
+}
+
+.button3 {
+  background-color: #f44336;
+  color: white;
+  border: 1px solid #f44336;
+}
+.button3:hover {
+  background-color: #ff8973; 
+  color: white; 
+  
+}
+
+	.container {
+  border-radius: 5px;
+  background-color: #dce7f3;
+  padding: 20px;
+  align-items: center;
+  align-self: center;
+}
+footer {
+      background-color: black;
+	  /*background-image: linear-gradient(315deg, #0cbaba 0%, #380036 74%);*/
+      color: white;
+      padding: 25px;
+    }
+</style>
+
+<script type="text/javascript">
+
+		function func()
+		{
+			nam=document.getElementById("usr").value;
+			mail=document.getElementById("email").value;
+			colg=document.getElementById("clname").value;
+			revi=document.getElementById("rev").value;
+			rat=$("input:radio[name=rating]:checked").val()
+			console.log(nam+mail+colg+revi+rat);
+
+
+			const options = {
+	  				headers:{'Access-Control-Allow-Origin': '*',
+	  						  'Access-Control-Allow-Methods':' POST',
+	  						  'Access-Control-Allow-Headers': 'Content-Type , Autharization'
+	  						}
+			};
+			axios.post('http://127.0.0.1:5000/add_review', {
+  					name: nam,
+  					email:mail,
+  					college:colg,
+  					review:revi,
+  					rating:rat
+				})
+		}	
+	</script>
+
+
+
+
+
+</head>
+<body >
+	<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="first (1).html">College Dhundo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li ><a href="first (1).html">Home</a></li>
+        <li class="active"> <a href="Next.html">Write Review</a></li>
+        <li><a href="frisddd.html">Compare</a></li>
+      
+      </ul>
+      
+    </div>
+  </div>
+</nav>
+<br>
+<!--The SELECT element.-->
+<div class="row">
+<div class="col-sm-2"></div>
+<div class="container col-sm-8 rounded" style="border: 2px,black;">
+  <h2 style="text-align: center;">Add review</h2>
+  <form class="form-horizontal" id="reviewform">
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="pwd">Name</label>
+      <div class="col-sm-9">          
+		<input type="text" class="form-control validate" id="usr" placeholder="Enter Name" required >
+	  </div>
+	  <div class="col-sm-3"></div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="email">Email:</label>
+      <div class="col-sm-9">
+        <input type="email" class="form-control validate" id="email" placeholder=" Enter Email" required>
+      </div>
+      <div class="col-sm-3"></div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="pwd">College:</label>
+      <div class="col-sm-9">
+		<input type="text" class="form-control validate" id="clname" placeholder="Enter College" required>
+	  </div>
+	  <div class="col-sm-3"></div>
+    </div>
+    <div class="form-group">        
+      <label class="control-label col-sm-2" for="email">Review:</label>
+      <div class="col-sm-9">
+		  <textarea class="form-control validate" rows="5" id="rev" placeholder="Type Reivew" required></textarea>
+      </div>
+      <div class="col-sm-3"></div>
+    </div>
+    <div class="form-group">        
+      <label class="control-label col-sm-2" for="email">Rating</label>
+      <div class="col-sm-9" id="san" >
+		 	<input type="radio" name="rating" value="0" checked id="rat"> 0 &nbsp&nbsp&nbsp&nbsp&nbsp
+  			<input type="radio" name="rating" value="1" id="rat"> 1 &nbsp&nbsp&nbsp&nbsp&nbsp
+  			<input type="radio" name="rating" value="2" id="rat"> 2 &nbsp&nbsp&nbsp&nbsp&nbsp
+  			<input type="radio" name="rating" value="3" id="rat"> 3 &nbsp&nbsp&nbsp&nbsp&nbsp
+  			<input type="radio" name="rating" value="4" id="rat"> 4 &nbsp&nbsp&nbsp&nbsp&nbsp
+  			<input type="radio" name="rating" value="5" id="rat"> 5 &nbsp&nbsp&nbsp&nbsp&nbsp
+      </div>
+      <div class="col-sm-3"></div>
+    </div>
+
+
+    <div class="form-group">        
+      <div class="col-sm-offset-5 col-sm-10">
+        <button type="button" class="btn btn-default" onclick="func()">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
+  
+<div class="col-sm-2"></div>
+</div>
+<br>
+<footer class="container-fluid text-center" style="background-color: #101010;padding-bottom: 1px; padding-top: 1px;padding-right: 1px;   padding-left: 1px; ">
+  <div class=" bg1 row" style="background: transparent;margin-bottom: 0px;padding-bottom: 1px; padding-top: 1px;padding-right: 1px;   padding-left: 1px;" >
+    <div class="col-sm-2">
+      <img id="rcorners3" src="jaypeelogo.jpg" height="130px" style="padding-top: 10px; padding-bottom: 10px;" >
+    </div>
+    <div class="col-sm-6" style="font-family: 'Thesans';">
+      <!-- <h2>Our Values</h2> -->
+      <br>
+      <h2  align="center"> Its time to start living the college life you've imagined!</h2>      
+      <!-- <p><strong>VISION:</strong> Our vision Lorem ipsum..</p> -->
+    </div>
+    <div class="col-sm-4">
+     	<h2>College Dhundo</h2>
+     	Contact us:<br>
+     	admin@collegedhundo.com
+    </div>
+  
+</div>
+
+</footer>
+
+
+
+
+
+</body>
+</html>
+
+
